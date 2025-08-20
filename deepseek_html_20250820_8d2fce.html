@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrediPort - Tu Aliado para Acceder a las Mejores Promociones AT&T</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+        .card-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .pulse-animation { animation: pulse 2s infinite; }
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        .logo-watermark {
+          position: relative;
+        }
+        .input-error {
+          border-color: #f87171;
+        }
+        .input-success {
+          border-color: #4ade80;
+        }
+        .whatsapp-float {
+          position: fixed;
+          width: 60px;
+          height: 60px;
+          bottom: 25px;
+          right: 25px;
+          background-color: #25d366;
+          color: #FFF;
+          border-radius: 50px;
+          text-align: center;
+          font-size: 30px;
+          box-shadow: 2px 2px 3px #999;
+          z-index: 100;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease-in-out;
+        }
+        .whatsapp-float:hover {
+          background-color: #128C7E;
+          transform: scale(1.1);
+        }
+        .modal {
+          transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+          overflow-x: hidden;
+          overflow-y: visible !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 logo-watermark">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/19453605214?text=Hola%20CrediPort,%20me%20interesa%20saber%20más%20sobre%20sus%20promociones" 
+       class="whatsapp-float" 
+       target="_blank"
+       aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-4 px-6 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="https://i.postimg.cc/1g4D6Y6h/Haz-un-Logo-Relacionado-con-telefonos-e-importacion-mi-empresa-se-llama-crediport-1.jpg" 
+                     alt="CrediPort Logo" 
+                     class="w-16 h-16 rounded-full object-cover shadow-lg border-2 border-white/20">
+                <h1 class="text-3xl font-bold tracking-wider" style="font-family: 'Orbitron', monospace; letter-spacing: 2px;">CrediPort</h1>
+            </div>
+            
+            <!-- Navigation for larger screens -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#beneficios" class="hover:text-cyan-300 transition-colors">Beneficios</a></li>
+                    <li><a href="#equipos" class="hover:text-cyan-300 transition-colors">Equipos</a></li>
+                    <li><a href="#testimonios" class="hover:text-cyan-300 transition-colors">Testimonios</a></li>
+                    <li><a href="#formulario" class="hover:text-cyan-300 transition-colors">Solicitar</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-white" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu - Ahora está correctamente agrupado dentro del header -->
+        <div class="hidden md:hidden bg-gray-800 mt-2 py-3 px-6 rounded-lg" id="mobile-menu">
+            <ul class="space-y-2">
+                <li><a href="#beneficios" class="block py-2 hover:text-cyan-300 transition-colors">Beneficios</a></li>
+                <li><a href="#equipos" class="block py-2 hover:text-cyan-300 transition-colors">Equipos</a></li>
+                <li><a href="#testimonios" class="block py-2 hover:text-cyan-300 transition-colors">Testimonios</a></li>
+                <li><a href="#formulario" class="block py-2 hover:text-cyan-300 transition-colors">Solicitar</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 px-6 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0 gradient-bg">
+            <!-- Phone showcase overlay -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-20">
+                <div class="flex space-x-8 transform rotate-12">
+                    <div class="w-32 h-56 bg-gradient-to-b from-gray-800 to-black rounded-3xl shadow-2xl flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">iPhone 16<br>Pro Max</span>
+                    </div>
+                    <div class="w-32 h-56 bg-gradient-to-b from-blue-800 to-purple-800 rounded-3xl shadow-2xl flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">Samsung<br>S25 Ultra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content overlay -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center text-white">
+            <div class="bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+                    🚀 Construye tu Historial Crediticio y Accede a las 
+                    <span class="text-yellow-300 drop-shadow-lg">Mejores Promociones AT&T</span>
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100 drop-shadow-md">
+                    Obtén tu Samsung S25 Ultra o iPhone 16 Pro Max con promociones exclusivas. 
+                    CrediPort te ayuda a mejorar tu perfil crediticio de forma rápida y segura.
+                </p>
+                
+                <div class="floating">
+                    <button onclick="document.getElementById('formulario').scrollIntoView({behavior: 'smooth'})" 
+                            class="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-8 py-4 rounded-full text-xl font-semibold hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 pulse-animation shadow-2xl">
+                        Reservar Mi Teléfono Ahora 📱
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating phone elements -->
+        <div class="absolute top-20 left-10 opacity-30 animate-bounce">
+            <div class="w-8 h-12 bg-white rounded-lg shadow-lg"></div>
+        </div>
+        <div class="absolute bottom-20 right-10 opacity-30 animate-pulse">
+            <div class="w-10 h-16 bg-gradient-to-b from-blue-400 to-purple-500 rounded-xl shadow-lg"></div>
+        </div>
+        <div class="absolute top-1/2 left-20 opacity-20 floating">
+            <div class="w-6 h-10 bg-gradient-to-b from-yellow-400 to-orange-500 rounded-lg shadow-lg"></div>
+        </div>
+    </section>
+
+    <!-- Phones Showcase -->
+    <section id="equipos" class="py-16 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Equipos Disponibles con Promociones Exclusivas</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-shadow rounded-2xl p-8 text-center bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200">
+                    <div class="mb-6 flex justify-center">
+                        <img src="https://phones.lebara.co.uk/files/images/handsets/samsung/01_samsung-galaxys25ultra_titaniumsilverblue_pm-v3.png" 
+                             alt="Samsung S25 Ultra" 
+                             class="w-32 h-40 object-contain rounded-lg shadow-md"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-800">Samsung S25 Ultra</h4>
+                    <p class="text-gray-600 mb-4">
+                        • Cámara de 200MP con zoom 100x<br>
+                        • S Pen integrado para productividad<br>
+                        • Pantalla Dynamic AMOLED 6.8"<br>
+                        • Batería 5000mAh con carga ultra rápida<br>
+                        • Resistente al agua IP68
+                    </p>
+                    <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block font-semibold">
+                        Promoción Especial Disponible
+                    </div>
+                </div>
+                <div class="card-shadow rounded-2xl p-8 text-center bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200">
+                    <div class="mb-6 flex justify-center">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_893557-MLU79115488779_092024-F.webp" 
+                             alt="iPhone 16 Pro Max" 
+                             class="w-32 h-40 object-contain rounded-lg shadow-md"
+                             loading="lazy">
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-800">iPhone 16 Pro Max</h4>
+                    <p class="text-gray-600 mb-4">
+                        • Chip A18 Pro con Apple Intelligence<br>
+                        • Sistema de cámaras Pro de 48MP<br>
+                        • Pantalla Super Retina XDR 6.9"<br>
+                        • Titanio aeroespacial ultra resistente<br>
+                        • Botón de Acción personalizable
+                    </p>
+                    <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block font-semibold">
+                        Promoción Especial Disponible
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="py-16 px-6 bg-gradient-to-br from-slate-100 to-gray-200">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">¿Por qué elegir CrediPort?</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 card-shadow text-center">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h4 class="text-xl font-semibold mb-3 text-gray-800">Proceso Rápido</h4>
+                    <p class="text-gray-600">Mejora tu historial crediticio en tiempo récord con nuestro sistema optimizado</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow text-center">
+                    <div class="text-4xl mb-4">🔒</div>
+                    <h4 class="text-xl font-semibold mb-3 text-gray-800">100% Seguro</h4>
+                    <p class="text-gray-600">Tus datos están protegidos con la más alta tecnología de seguridad</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow text-center">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h4 class="text-xl font-semibold mb-3 text-gray-800">Acceso Exclusivo</h4>
+                    <p class="text-gray-600">Promociones especiales AT&T disponibles solo para usuarios CrediPort</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Nuestra Ubicación</h3>
+            <div class="rounded-2xl overflow-hidden card-shadow">
+                <div class="h-64 bg-gray-200 flex items-center justify-center">
+                    <div class="text-center p-6">
+                        <i class="fas fa-map-marker-alt text-4xl text-blue-500 mb-3"></i>
+                        <h4 class="text-xl font-semibold mb-2">Oficinas CrediPort</h4>
+                        <p class="text-gray-600">Estamos ubicados estratégicamente para servirte mejor</p>
+                        <p class="text-gray-500 mt-2">123 Tech Avenue, Suite 456, Dallas, TX 75201</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="formulario" class="py-16 px-6 bg-white">
+        <div class="max-w-2xl mx-auto">
+            <div class="card-shadow rounded-2xl p-8 bg-gradient-to-br from-slate-50 to-blue-50 border border-slate-200">
+                <h3 class="text-3xl font-bold text-center mb-6 text-gray-800">
+                    🎉 ¡Obtén Tu Promoción Exclusiva Ahora!
+                </h3>
+                <p class="text-center text-gray-600 mb-8">
+                    Completa el formulario y un especialista te contactará en menos de 24 horas
+                </p>
+                
+                <!-- Formulario con integración Formspree -->
+                <form id="leadForm" action="https://formspree.io/f/xpwlgonv" method="POST" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nombre completo *</label>
+                        <input type="text" id="nombre" name="nombre" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                        <div id="nombre-error" class="text-red-500 text-sm mt-1 hidden">Por favor ingresa tu nombre completo</div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Correo electrónico *</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                        <div id="email-error" class="text-red-500 text-sm mt-1 hidden">Por favor ingresa un correo electrónico válido</div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Teléfono *</label>
+                        <input type="tel" id="telefono" name="telefono" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                        <div id="telefono-error" class="text-red-500 text-sm mt-1 hidden">Por favor ingresa un número de teléfono válido</div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de documento *</label>
+                        <select id="tipoDocumento" name="tipoDocumento" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                            <option value="">Selecciona tu tipo de documento</option>
+                            <option value="licencia-conducir">Licencia de conducir</option>
+                            <option value="pasaporte">Pasaporte</option>
+                            <option value="permiso-trabajo">Permiso de trabajo</option>
+                            <option value="id">ID</option>
+                        </select>
+                        <div id="tipoDocumento-error" class="text-red-500 text-sm mt-1 hidden">Por favor selecciona un tipo de documento</div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Estado *</label>
+                        <select id="estado" name="estado" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                            <option value="">Selecciona tu estado</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">Distrito de Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                        <div id="estado-error" class="text-red-500 text-sm mt-1 hidden">Por favor selecciona tu estado</div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">¿Qué equipo te interesa más? *</label>
+                        <select id="interes" name="interes" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                            <option value="">Selecciona una opción</option>
+                            <option value="samsung-s25-ultra">Samsung S25 Ultra</option>
+                            <option value="iphone-16-pro-max">iPhone 16 Pro Max</option>
+                            <option value="ambos">Me interesan ambos equipos</option>
+                            <option value="otros">Otros equipos AT&T</option>
+                        </select>
+                        <div id="interes-error" class="text-red-500 text-sm mt-1 hidden">Por favor selecciona una opción</div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" id="acepto" name="acepto" required class="mt-1">
+                            <label for="acepto" class="text-sm text-gray-700">
+                                Acepto recibir información sobre promociones y servicios de CrediPort y AT&T. 
+                                Mis datos serán tratados de forma confidencial.
+                            </label>
+                        </div>
+                        <div id="acepto-error" class="text-red-500 text-sm mt-1 hidden">Debes aceptar los términos para continuar</div>
+                    </div>
+                    
+                    <input type="hidden" name="_subject" value="Nueva solicitud de promoción CrediPort">
+                    <input type="hidden" name="_replyto" id="_replyto" value="">
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-slate-700 to-blue-600 text-white py-4 px-6 rounded-lg text-lg font-semibold hover:from-slate-800 hover:to-blue-700 transition-all duration-300 transform hover:scale-105">
+                        🚀 Reservar Mi Teléfono Ahora
+                    </button>
+                </form>
+                
+                <div id="mensaje" class="mt-6 p-4 rounded-lg hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonios" class="py-16 px-6 bg-gradient-to-br from-gray-100 to-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Lo que dicen nuestros usuarios</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">M</div>
+                        <div class="ml-3">
+                            <h4 class="font-semibold">María González</h4>
+                            <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Gracias a CrediPort pude obtener mi iPhone 16 Pro Max con una promoción increíble. El proceso fue súper rápido."</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">C</div>
+                        <div class="ml-3">
+                            <h4 class="font-semibold">Carlos Rodríguez</h4>
+                            <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Mi historial crediticio mejoró en pocas semanas. Ahora tengo acceso a las mejores promociones de AT&T."</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">A</div>
+                        <div class="ml-3">
+                            <h4 class="font-semibold">Ana Martínez</h4>
+                            <div class="text-yellow-400">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Excelente servicio. El Samsung S25 Ultra que conseguí tiene características increíbles y el precio fue genial."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security & Trust Section -->
+    <section class="py-16 px-6 bg-gradient-to-br from-slate-50 to-blue-100">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Tu Seguridad es Nuestra Prioridad</h3>
+            
+            <!-- Security Features -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white rounded-xl p-6 card-shadow text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Encriptación SSL 256-bit</h4>
+                    <p class="text-sm text-gray-600">Máxima protección de datos con certificado de seguridad bancaria</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 card-shadow text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Aliado Oficial AT&T</h4>
+                    <p class="text-sm text-gray-600">Socio comercial autorizado con acceso to promociones exclusivas</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 card-shadow text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Respuesta Garantizada</h4>
+                    <p class="text-sm text-gray-600">Contacto en menos de 24 horas o reembolso completo</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 card-shadow text-center">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">+5,000</h4>
+                    <p class="text-sm text-gray-600">Usuarios diarios solicitan sus equipos y quedan satisfechos en menos de 48 horas</p>
+                </div>
+            </div>
+            
+            <!-- Certifications -->
+            <div class="bg-white rounded-2xl p-8 card-shadow">
+                <h4 class="text-xl font-bold text-center mb-6 text-gray-800">Certificaciones y Garantías</h4>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mb-3">
+                            <span class="text-white font-bold">BBB</span>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700">Better Business Bureau</p>
+                        <p class="text-xs text-gray-500">Calificación A+</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-3">
+                            <span class="text-white font-bold text-xs">GDPR</span>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700">Protección de Datos</p>
+                        <p class="text-xs text-gray-500">Cumplimiento Total</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mb-3">
+                            <span class="text-white font-bold text-xs">PCI</span>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700">Seguridad de Pagos</p>
+                        <p class="text-xs text-gray-500">Certificado DSS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-slate-900 to-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="https://i.postimg.cc/1g4D6Y6h/Haz-un-Logo-Relacionado-con-telefonos-e-importacion-mi-empresa-se-llama-crediport-1.jpg" 
+                             alt="CrediPort Logo" 
+                             class="w-14 h-14 rounded-full object-cover shadow-lg border-2 border-gray-600">
+                        <h3 class="text-2xl font-bold tracking-wider" style="font-family: 'Orbitron', monospace; letter-spacing: 2px;">CrediPort</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">
+                        Somos tu aliado confiable para construir un mejor futuro crediticio y acceder a las mejores promociones de AT&T. 
+                        Más de 15,000 clientes han confiado en nosotros.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="flex items-center space-x-2 text-sm text-gray-400">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                            </svg>
+                            <span>+1 (945) 360-5214</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Aviso de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-700 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex items-center space-x-6 mb-4 md:mb-0">
+                        <div class="flex items-center space-x-2">
+                            <svg class="h-10 w-auto" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="20" cy="20" r="18" fill="#00a8e6" stroke="white" stroke-width="2"/>
+                                <text x="20" y="26" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">AT&T</text>
+                            </svg>
+                            <span class="text-sm text-gray-400">Aliado Comercial Oficial</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center md:text-right">
+                        <p class="text-sm text-gray-400 mb-1">
+                            © 2024 CrediPort LLC. Todos los derechos reservados.
+                        </p>
+                        <p class="text-xs text-gray-500">
+                            Licencia NMLS #123456 | Regulado por CFPB
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50" id="successModal">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            
+            <div class="modal-content py-4 text-left px-6">
+                <!-- Title -->
+                <div class="flex justify-between items-center pb-3">
+                    <p class="text-2xl font-bold">¡Excelente!</p>
+                    <div class="modal-close cursor-pointer z-50" id="modal-close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                
+                <!-- Body -->
+                <div class="text-center py-4">
+                    <i class="fas fa-check-circle text-5xl text-green-500 mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2">Solicitud Enviada con Éxito</h3>
+                    <p class="text-gray-600 mb-4">Un especialista de CrediPort se contactará contigo en menos de 24 horas para procesar tu solicitud.</p>
+                    <p class="text-sm text-gray-500">Mientras tanto, puedes contactarnos directamente por WhatsApp para una respuesta más rápida.</p>
+                </div>
+                
+                <!-- Footer -->
+                <div class="flex justify-center pt-4 space-x-4">
+                    <button class="modal-close px-6 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors">
+                        Cerrar
+                    </button>
+                    <a href="https://wa.me/19453605214?text=Hola%20CrediPort,%20acabo%20de%20enviar%20mi%20solicitud%20y%20quiero%20más%20información" 
+                       target="_blank"
+                       class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Form validation and submission
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            // Validar el formulario antes de enviar
+            if (!validateForm()) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Configurar el campo de respuesta automática
+            document.getElementById('_replyto').value = document.getElementById('email').value;
+            
+            // Mostrar estado de carga
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+            submitButton.disabled = true;
+            
+            // Permitir que el formulario se envíe a Formspree
+        });
+
+        // Real-time validation
+        const inputs = document.querySelectorAll('#leadForm input, #leadForm select');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            input.addEventListener('input', function() {
+                clearFieldError(this);
+            });
+        });
+
+        // Field validation function
+        function validateField(field) {
+            const fieldId = field.id;
+            const value = field.value.trim();
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            
+            // Clear previous error states
+            clearFieldError(field);
+            
+            // Validate based on field type
+            if (field.hasAttribute('required') && !value) {
+                showFieldError(field, errorElement, 'Este campo es requerido');
+                return false;
+            }
+            
+            if (fieldId === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showFieldError(field, errorElement, 'Por favor ingresa un correo electrónico válido');
+                    return false;
+                }
+            }
+            
+            if (fieldId === 'telefono' && value) {
+                const phoneRegex = /^[0-9+\-\s()]{10,20}$/;
+                if (!phoneRegex.test(value)) {
+                    showFieldError(field, errorElement, 'Por favor ingresa un número de teléfono válido');
+                    return false;
+                }
+            }
+            
+            // If all validations pass
+            field.classList.add('input-success');
+            return true;
+        }
+
+        function showFieldError(field, errorElement, message) {
+            field.classList.add('input-error');
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+
+        function clearFieldError(field) {
+            field.classList.remove('input-error', 'input-success');
+            const errorElement = document.getElementById(`${field.id}-error`);
+            if (errorElement) {
+                errorElement.classList.add('hidden');
+            }
+        }
+
+        function validateForm() {
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        // Modal functionality
+        document.querySelectorAll('.modal-close, .modal-overlay').forEach(element => {
+            element.addEventListener('click', function() {
+                const modal = document.getElementById('successModal');
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.classList.remove('opacity-100');
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Lazy load images
+        if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Manejar redirección después del envío exitoso
+        // Formspree redirige a una página de confirmación por defecto
+        // Podemos detectar parámetros en la URL para mostrar nuestro modal
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                // Mostrar modal de éxito
+                const modal = document.getElementById('successModal');
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97230693a7eb7481',t:'MTc1NTcwNDgwOS.000000'};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
